@@ -1,1 +1,1 @@
-web: gunicorn esfblog.wsgi --log-file -
+web: gunicorn efsblog.wsgi --log-file -
