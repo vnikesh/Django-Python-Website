@@ -26,27 +26,9 @@
 </div>
 <div class="row">
     <h2 style="padding-left: 15Px">Customer Portfolio</h2>
-	<h3 style="padding-left: 15Px">Overall Summary</h3>
+	<!--<h3 style="padding-left: 15Px">Overall Summary</h3>-->
 </div>
-<!--<div>
-    <table class="table table-striped table-bordered table-hover">
-        <thead>
-        <tr class="bg-info">
 
-            <th>Total of Initial Stock Purchase</th>
-		
-		</tr>
-		</thead>
-        <tbody>
-        {% with one=stock.shares two=stock.purchase_price %}
-            <tr>
-            <td>{{ one|add:two }}</td>
-
-            </tr>
-        {% endwith %}
-        </tbody>
-    </table>
-</div> -->
 			
 
 
@@ -114,6 +96,58 @@
                 <td>{{ investment.acquired_date }}</td>
                 <td>{{ investment.recent_value }}</td>
                 <td>{{ investment.recent_date }}</td>
+
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+<div>
+    <table class="table table-striped table-bordered table-hover">
+        <thead>
+        <tr class="bg-info">
+
+            <th>Total of Initial Stock Purchase</th>
+		
+		</tr>
+		</thead>
+        <tbody>
+			<tr>
+            <td>{{ sum_acquired_value.acquired_value__sum }}</td>
+
+            </tr>
+        </tbody>
+    </table>
+</div>
+<div class="row">
+    <h2 style="padding-left: 15Px">Mutual Fund Information</h2>
+</div>
+<div>
+    <table class="table table-striped table-bordered table-hover">
+        <thead>
+        <tr class="bg-info">
+
+            <th>Cust ID</th>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Acquired Value</th>
+            <th>Acquired Date</th>
+            <th>Recent Value</th>
+            <th>Recent Date</th>
+
+
+        </tr>
+        </thead>
+        <tbody>
+        {% for mutualfund in mutualfunds %}
+            <tr>
+                <td>{{ mutualfund.customer }}</td>
+                <td>{{ mutualfund.name }}</td>
+                <td>{{ mutualfund.description }}</td>
+                <td>{{ mutualfund.acquired_value }}</td>
+                <td>{{ mutualfund.acquired_date }}</td>
+                <td>{{ mutualfund.recent_value }}</td>
+                <td>{{ mutualfund.recent_date }}</td>
 
             </tr>
         {% endfor %}

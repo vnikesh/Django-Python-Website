@@ -69,5 +69,28 @@ class Stock(models.Model):
     def initial_stock_value(self):
         return self.shares * self.purchase_price
 
+class Mutualfund(models.Model):
+    customer = models.ForeignKey(Customer, related_name='mutualfunds')
+    name = models.CharField(max_length=50)
+    description = models.CharField(max_length=200)
+    acquired_value = models.DecimalField(max_digits=10, decimal_places=2)
+    acquired_date = models.DateField(default=timezone.now)
+    recent_value = models.DecimalField(max_digits=10, decimal_places=2)
+    recent_date = models.DateField(default=timezone.now, blank=True, null=True)
+
+    def created(self):
+        self.acquired_date = timezone.now()
+        self.save()
+
+    def updated(self):
+        self.recent_date = timezone.now()
+        self.save()
+
+    def __str__(self):
+        return str(self.customer)
+
+    def results_by_mutualfund(self):
+        return self.recent_value - self.acquired_value
+
 
 # Create your models here.
